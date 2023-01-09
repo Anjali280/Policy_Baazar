@@ -9,8 +9,10 @@ import "./Display.css"
 import { useSelector } from 'react-redux'
 
 export const Display_data = () => {
+    let monthly = React.useRef(null)
+  let yearly = React.useRef(null)
    
-    let logo = useSelector((st)=>st.Term_Life_Insurance)
+    let logo = useSelector((st)=>st.Health_reducer.Term_Life_Insurance)
     let ref_ins = React.useRef(null)
     let ref_Cov = React.useRef(null)
     let ref_age = React.useRef(null)
@@ -54,15 +56,22 @@ export const Display_data = () => {
         }
     }
     function Handle_monthly(){
-
+        monthly.current.style.color = "red"
+        monthly.current.style.fontSize = "large"
+        yearly.current.style.fontSize = "small"
+        yearly.current.style.color = "black"
         setData2(logo)
     }
     function Handle_yearly(){
+        monthly.current.style.color = "black"
+        monthly.current.style.fontSize = "small"
+        yearly.current.style.fontSize = "large"
+        yearly.current.style.color = "red"
         let g = logo.map((e)=>{return {...e,premium:parseInt(e.premium)*12}})
         setData2(g)
     }
   return (
-    <div>
+    <div className='main_table'>
         <table>
             <thead>
                 <tr>
@@ -94,9 +103,9 @@ export const Display_data = () => {
                     <option  value="H">H to L</option>
                 </select>
                     </th>
-                    <th>
-                    <button onClick={Handle_monthly}>Pay Monthly</button>
-                    <button onClick={Handle_yearly}>Pay Yearly</button>
+                    <th className='button1'>
+                    <button ref={monthly} onClick={Handle_monthly}>Monthly</button>
+                    <button ref={yearly} onClick={Handle_yearly}>Yearly</button>
                     </th>
                 </tr>
             </thead>
@@ -110,6 +119,18 @@ export const Display_data = () => {
             })}
             </tbody>
         </table>
+        <div>
+            <div>
+                <ul>Why buy from Policybazaar?
+                    <ol>Dedicated Claim Assistance</ol>
+                    <ol>Ideal Prices</ol>
+                    <ol>Unbiased & Certified Advisors</ol>
+                    <ol>One-click easy refund</ol>
+                    <ol>Walk-in stores</ol>
+                    <ol>Advisor at your doorstep</ol>
+                </ul>
+            </div>
+        </div>
     </div>
   )
 

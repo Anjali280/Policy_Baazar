@@ -1,16 +1,17 @@
 import { useState } from "react"
-import { Navigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import "./Checkout.css"
 const OTP=()=>
 {
     const[otp,setotp]=useState(0);
+    const navigate=useNavigate()
     const ValidateData=()=>
     {
         if(otp==="1234")
         {
             alert("Payment Successfull. Please Wait while we redirect you to the home page...")
             {
-                <Navigate to="/"/>
+                navigate("/")
             }
         }
         else
@@ -19,9 +20,9 @@ const OTP=()=>
         }
     }
     return(
-    <div id="otpparent">
+    <div id="otpparent" style={{marginBottom:"20px"}}>
         <h4>OTP is sent to the registered mobile number</h4>
-        <input id="otpinput" type="number" placeholder="Enter the OTP sent" onChange={(e)=>
+        <input style={{width:"80%"}} id="otpinput" type="number" placeholder="Enter the OTP sent" onChange={(e)=>
         {
             setotp(e.target.value)
         }}></input><br/>

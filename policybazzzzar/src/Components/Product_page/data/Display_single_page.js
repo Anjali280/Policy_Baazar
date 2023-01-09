@@ -1,5 +1,5 @@
 import React from 'react'
-
+import { useNavigate } from 'react-router-dom'
 export const Display_single_page = ({er}) => {
      // let d = {
     //     insurer:{ image:hdfc,
@@ -12,13 +12,14 @@ export const Display_single_page = ({er}) => {
     //     clim_settled:97.9,
     //     offers:[ "Waiver of Premium Cover","100% payout on Terminal illness","Extra Payout on Accidental death","Cover against 34 critical illnesses"],
     //     }
+    let navigate = useNavigate()
   return (
     <tr className='tr'>
         <td><img src={er.insurer.image} alt={er.insurer.name}/></td>
-        <td>{er.life_cover}</td>
-        <td className='maxage'>{er.cover_till_age.max_age} yrs<span>max age {er.cover_till_age.max_limit} yrs</span></td>
+        <td>{er.life_cover} L</td>
+        <td className='maxage'>{er.cover_till_age.max_age} yrs<span className='span1'>max age {er.cover_till_age.max_limit} yrs</span></td>
         <td>{er.clim_settled}</td>
-        <td><button>{er.premium} ▶</button></td>
+        <td><button onClick={()=>navigate(`/lifeinsurance/health-insurance/payment/${er.clim_settled}`)} >{er.premium} ▶</button></td>
     </tr>
   )
 }

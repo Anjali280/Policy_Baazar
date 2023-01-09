@@ -5,7 +5,7 @@ import { FaHeartbeat } from 'react-icons/fa'
 import { AiFillCar } from 'react-icons/ai'
 import { Link } from "react-router-dom"
 import Data from "./Data"
-const Insurance=()=>
+const Insurance=({hoverstate,sethoverstate})=>
 {
     return(
         <div id="navbarinsuranceprod">
@@ -20,7 +20,10 @@ const Insurance=()=>
                     Data.TermInsurance.map((ele,i)=>
                     {
                         return (
-                            <li key={i}><Link to={`/lifeinsurance/term-insurance/${ele.path}`}>{ele.title}</Link></li>
+                            <li key={i}><Link onClick={()=>
+                            {
+                                sethoverstate({IP:false,RP:false,Cl:false,Sup:false})
+                            }} to={`/lifeinsurance/term-insurance/${ele.path}`}>{ele.title}</Link></li>
                         )
                     })
                 }
@@ -37,7 +40,10 @@ const Insurance=()=>
                     Data.OtherInsurance.map((ele,i)=>
                     {
                         return (
-                            <li key={i}><Link to={`/lifeinsurance/other-insurance/${ele.path}`}>{ele.title}</Link></li>
+                            <li key={i}><Link onClick={()=>
+                                {
+                                    sethoverstate({IP:false,RP:false,Cl:false,Sup:false})
+                                }} to={`/lifeinsurance/other-insurance/${ele.path}`}>{ele.title}</Link></li>
                         )
                     })
                 }
@@ -54,7 +60,10 @@ const Insurance=()=>
                     Data.InvestmentPlans.map((ele,i)=>
                     {
                         return (
-                            <li key={i}><Link to={`/lifeinsurance/investment-plans/${ele.path}`}>{ele.title}</Link></li>
+                            <li key={i}><Link onClick={()=>
+                                {
+                                    sethoverstate({IP:false,RP:false,Cl:false,Sup:false})
+                                }} to={`/lifeinsurance/investment-plans/${ele.path}`}>{ele.title}</Link></li>
                         )
                     })
                 }
@@ -72,7 +81,10 @@ const Insurance=()=>
                     Data.HealthInsurance.map((ele,i)=>
                     {
                         return (
-                            <li key={i}><Link to={`/lifeinsurance/health-insurance/${ele.path}`}>{ele.title}</Link></li>
+                            <li key={i}><Link onClick={()=>
+                                {
+                                    sethoverstate({IP:false,RP:false,Cl:false,Sup:false})
+                                }} to={`/lifeinsurance/health-insurance/${ele.path}`}>{ele.title}</Link></li>
                         )
                     })
                 }
@@ -90,7 +102,10 @@ const Insurance=()=>
                     Data.CarInsurance.map((ele,i)=>
                     {
                         return (
-                            <li key={i}><Link to={`/lifeinsurance/car-insurance/${ele.path}`}>{ele.title}</Link></li>
+                            <li key={i}><Link onClick={()=>
+                                {
+                                    sethoverstate({IP:false,RP:false,Cl:false,Sup:false})
+                                }} to={`/lifeinsurance/car-insurance/${ele.path}`}>{ele.title}</Link></li>
                         )
                     })
                 }

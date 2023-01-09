@@ -20,7 +20,7 @@ export const Family_right = () => {
     function HandleChange(){
         Health_action(details,dispatch);
         // <Navigate to="/age" />
-        navigate('/age')
+        navigate("/lifeinsurance/health-insurance/family-health-insurance/age")
 
     }
     // function Handleson(){
@@ -101,12 +101,12 @@ export const Family_right = () => {
             </fieldset>
             <fieldset>
                 <div><input onClick={()=>{details.son?setDetails({...details,son:false}):setDetails({...details,son:true})}} type="checkbox" />
-                <label>Son</label></div>
+                <label>Son</label></div> <div></div>
                 {/* <div><button disabled={details.son.check} onClick={Handlesoncountdic} >-</button> <span>{details.son.count}</span> <button disabled={details.son.check} onClick={Handlesoncountinc} >+</button></div> */}
             </fieldset>
             <fieldset>
                 <div><input onClick={()=>{details.doughter?setDetails({...details,doughter:false}):setDetails({...details,doughter:true})}} type="checkbox" />
-                <label>Daughter</label></div>
+                <label>Daughter</label></div><div></div>
                 {/* <div><button disabled={details.doughter.check} onClick={Handledoughtercountdic} >-</button> <span>{details.doughter.count}</span> <button disabled={details.doughter.check} onClick={Handledoughtercountinc} >+</button></div> */}
             </fieldset>
             <fieldset><div>

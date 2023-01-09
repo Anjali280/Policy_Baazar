@@ -13,8 +13,8 @@ import thunk from "redux-thunk";
 
 const combReducer = combineReducers({
   login: loginReducer,
-  Reducer,
-  reducer,
+  Health_reducer:Reducer,
+  reducer:reducer,
 });
 const reduxStore = createStore(combReducer, applyMiddleware(logger, thunk));
 

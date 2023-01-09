@@ -7,7 +7,7 @@ import { FaStore, FaRegMoneyBillAlt } from "react-icons/fa"
 import {SlCallIn} from "react-icons/sl"
 import {SlEarphonesAlt} from "react-icons/sl"
 import {FiSettings} from "react-icons/fi"
-const Support=()=>
+const Support=({hoverstate,sethoverstate})=>
 {
     return(
         <div id="navsupport">
@@ -17,19 +17,31 @@ const Support=()=>
             <div id="navmyaccount" >
                 <div className="icontext">
                     <CgNotes size="20" color="green"/>
-                    <Link to="/support/account/policies">Policies</Link>
+                    <Link to="/support/account/policies"onClick={()=>
+                            {
+                                sethoverstate({IP:false,RP:false,Cl:false,Sup:false})
+                            }}>Policies</Link>
                 </div>
                 <div className="icontext">
                     <RiQuestionnaireLine size="20" color="greenyellow"/>
-                    <Link to="/support/account/get-help">Get help</Link>
+                    <Link to="/support/account/get-help" onClick={()=>
+                            {
+                                sethoverstate({IP:false,RP:false,Cl:false,Sup:false})
+                            }}>Get help</Link>
                 </div>
                 <div className="icontext">
                     <FiPhoneCall size="20" color="skyblue" />
-                    <Link to="/support/account/communication-preferences">Manage Communication Preferences</Link>
+                    <Link to="/support/account/communication-preferences"onClick={()=>
+                            {
+                                sethoverstate({IP:false,RP:false,Cl:false,Sup:false})
+                            }}>Manage Communication Preferences</Link>
                 </div>
                 <div className="icontext">
                     <BsFillPersonFill size="20" color="blue" />
-                    <Link to="/support/account/advisor">Verify your advisor</Link>
+                    <Link to="/support/account/advisor"onClick={()=>
+                            {
+                                sethoverstate({IP:false,RP:false,Cl:false,Sup:false})
+                            }}>Verify your advisor</Link>
                 </div>
             </div>
             <div className="supportwrapper">
@@ -38,15 +50,24 @@ const Support=()=>
             <div id="navcontact">
                 <div>
                     <BsWhatsapp size="20" color="lightgreen" className="contreacticons"/><br/>
-                    <Link to="/support/contact/whatsapp">Connect on Whatsapp</Link>
+                    <Link to="/support/contact/whatsapp"onClick={()=>
+                            {
+                                sethoverstate({IP:false,RP:false,Cl:false,Sup:false})
+                            }}>Connect on Whatsapp</Link>
                 </div>
                 <div>
                     <FaStore size="20" color="orange" className="contreacticons" /><br/>
-                    <Link to="/support/contact/whatsapp">Stores near you</Link>
+                    <Link to="/support/contact/whatsapp"onClick={()=>
+                            {
+                                sethoverstate({IP:false,RP:false,Cl:false,Sup:false})
+                            }}>Stores near you</Link>
                 </div>
                 <div>
                     <SlCallIn size="20" color="blue" className="contreacticons"/><br/>
-                    <Link to="/support/contact/whatsapp">Request a callback</Link>
+                    <Link to="/support/contact/whatsapp"onClick={()=>
+                            {
+                                sethoverstate({IP:false,RP:false,Cl:false,Sup:false})
+                            }}>Request a callback</Link>
                 </div>
             </div>
             <div id="navinfodetails">

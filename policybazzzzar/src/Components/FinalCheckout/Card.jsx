@@ -13,11 +13,11 @@ const Card=()=>
                 <option value="">Bank of India</option>
             </select>
             <h5>Card Number</h5>
-            <input type="number" placeholder="xxxx-xxxx-xxxx-xxxx"/>
+            <input style={{width:"60%"}} type="number" placeholder="xxxx-xxxx-xxxx-xxxx"/>
             <h5>Name on Card</h5>
-            <input type="text" placeholder="Enter name on the card"/>
+            <input style={{width:"60%"}} type="text" placeholder="Enter name on the card"/>
             <h5>Expiry Date</h5>
-            <input type="date"/>
+            <input style={{width:"40%"}} type="date"/>
             <h5>CVV</h5>
             <input type="number" style={{width:"20%"}}/>
             <h5>Note:</h5>

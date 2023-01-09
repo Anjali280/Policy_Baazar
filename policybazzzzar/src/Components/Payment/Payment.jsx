@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch,useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 // import { total_amt } from "../redux/action";
 import { total_amt } from "../Login/Redux/Payment/action";
 import { useNavigate } from "react-router-dom";
@@ -11,6 +12,14 @@ import "./payment.css";
 const Payment = () => {
   let dispatch = useDispatch();
   const navigate = useNavigate();
+  const allLifeIns = useSelector((store) => store.Health_reducer.Term_Life_Insurance
+  );
+  const {clim_settled} = useParams();
+ 
+  const PaymentStoreObj = allLifeIns.filter((ele)=>{ return ele.clim_settled == clim_settled})
+
+  // console.log(allLifeIns);
+  console.log(PaymentStoreObj)
   const Paymentobj = {
     image:
       "https://static.pbcdn.in/health-cdn/images/insurer-logo/Care_Health@2x.webp",
@@ -20,7 +29,7 @@ const Payment = () => {
   // dynamic price change
 
   const [year, setYear] = useState(0);
-  const [year_plan, setYear_plan] = useState([9212, 17733, 26024]);
+  const [year_plan, setYear_plan] = useState([+(PaymentStoreObj[0].premium) * 12, +(PaymentStoreObj[0].premium) * 24, +(PaymentStoreObj[0].premium) * 36]);
   const [total_price, setTotal_price] = useState(year_plan[year]);
 
   // for riders
@@ -132,10 +141,10 @@ const Payment = () => {
       <div className="paymentpage-container">
         <div className="care-image-div">
           <div className="care-image">
-            <img src={Paymentobj.image} alt="img" />
+            <img src={PaymentStoreObj[0].insurer.image} alt="img" />
             <ul type="none">
               <h3>
-                <li id="care-supreme">{Paymentobj.name}</li>
+                <li id="care-supreme">{PaymentStoreObj[0].insurer.name}</li>
               </h3>
               <li className="seeAllfeature">
                 See All Feature{" "}
@@ -147,7 +156,7 @@ const Payment = () => {
             <p>Policy Bazaar is 5 star partner for health care</p>
           </div>
         </div>
-        <div>
+        {/* <div>
           <div className="cover-amount">
             <h3>Cover Amount</h3>
             <p>
@@ -166,7 +175,7 @@ const Payment = () => {
               <option value="15l">&#8377;15 Lakhs</option>
             </select>
           </div>
-        </div>
+        </div> */}
         <div className="policy-classes">
           <div className="policy-name">
             <h3 className="policy-heading">Policy Period</h3>
@@ -176,7 +185,7 @@ const Payment = () => {
             </p>
           </div>
           <div className="policy-year" onChange={(e) => selectYear(e.target)}>
-            <div>
+            <div className="policy-radio-circle">
               <input
                 type="radio"
                 id="price1"
@@ -184,26 +193,26 @@ const Payment = () => {
                 value="0"
                 checked={year === 0 ? "checked" : false}
               />
-              <label for="price1">
-                1 Year @ ₹{year_plan[0].toLocaleString("en-US")}
+              <label for="price1" style={{marginLeft : '6%',  float :"right"}}>
+                1 Year @ ₹{+(PaymentStoreObj[0].premium) * 12}
               </label>
             </div>
             <div>
               <input type="radio" id="price2" name="price" value="1" />
-              <label for="price2">
-                2 Year @ ₹{year_plan[1].toLocaleString("en-US")}
+              <label for="price2" style={{marginLeft : '6%',  float :"right"}}>
+                2 Year @ ₹{+(PaymentStoreObj[0].premium) * 24}
               </label>
             </div>
             <div>
               <input type="radio" id="price3" name="price" value="2" />
-              <label for="price3">
-                3 Year @ ₹{year_plan[2].toLocaleString("en-US")}
+              <label for="price3" style={{marginLeft : '6%',  float :"right"}}>
+                3 Year @ ₹{+(PaymentStoreObj[0].premium) * 36}
               </label>
             </div>
           </div>
           <div className="easy-emi">
             <p>
-              Easy EMI options starting from ₹()/month.{" "}
+              Easy EMI options and payment method{" "}
               <span style={{ color: "green", cursor: "pointer" }}>
                 View details ›
               </span>
@@ -211,14 +220,14 @@ const Payment = () => {
           </div>
         </div>
         <div className="rider" id="riders">
-          <h2>Riders</h2>
-          <p>
+          <h2 className="riders-heading">Riders</h2>
+          <p className="riders-paragraph">
             You should get these additional benefits to enhance your current
             plan
           </p>
 
           <div className="rider2">
-            <div>
+            <div className="annual-health-rider2">
               <h3 className="rider2-heading">Annual Health Check-up</h3>
               <p className="rider2-para">
                 Once for all insured every policy year
@@ -244,7 +253,7 @@ const Payment = () => {
             </div>
           </div>
           <div className="rider3">
-            <div>
+            <div className="rider3-div-bonus">
               <h3 className="cumulative">Cumulative Bonus Super</h3>
               <p className="rider3-cumulative">
                 Up to 100% of cover amount per year, max up to 500% of sum
@@ -273,11 +282,11 @@ const Payment = () => {
           <div className="add-on" id="add-on">
             <div className="recommend">
               <br />
-              <h3>Recommended Add-Ons</h3>
+              <h3>Recommended Add-Ons</h3><br />
               <p>
                 Add-ons are a smart way to enhance your cover at a fraction of
                 the cost.
-              </p>
+              </p><br />
             </div>
             <div class="all-btn">
               <button>All</button>
@@ -290,15 +299,14 @@ const Payment = () => {
                   src="https://static.pbcdn.in/health-cdn/images/insurer-logo/Care_Health@2x.webp"
                   alt=""
                 />
-                <h5>Enhance</h5>
+                <h5 className="enhance-div-heading">Enhance</h5>
               </div>
-              <div>
-                <table className="myTable" cellSpacing={10}>
+                <table className="myTable" cellSpacing={15} style ={{height:'5vh'}}>
                   <thead>
                     <th>Cover</th>
                     <th>Member(s)</th>
                   </thead>
-                  <tbody>
+                  <tbody className="enhance-table-tbody">
                     <td>
                       <select
                         name=""
@@ -313,21 +321,21 @@ const Payment = () => {
                       </select>
                     </td>
                     <td>All</td>
+                    <td 
+                      className="enhance-amount"
+                      onClick={() => add_booster("add_on")}
+                      style={{
+                        borderColor: is_addon ? "green" : "rgb(255,86,48)",
+                        color: is_addon ? "green" : "rgb(255,86,48)",
+                        cursor: "pointer", 
+                      }}
+                    >
+                      &#8377;{addon.toLocaleString("en-US")}
+                    </td>
                   </tbody>
                 </table>
 
-                <span
-                  className="enhance-amount"
-                  onClick={() => add_booster("add_on")}
-                  style={{
-                    borderColor: is_addon ? "green" : "rgb(255,86,48)",
-                    color: is_addon ? "green" : "rgb(255,86,48)",
-                    cursor: "pointer",
-                  }}
-                >
-                  &#8377;{addon.toLocaleString("en-US")}
-                </span>
-              </div>
+              
             </div>
           </div>
           <p id="para-deductible">Deductible : 7L</p>
@@ -345,11 +353,11 @@ const Payment = () => {
         <div>
           <h3 className="summary-payment">Summary</h3>
         </div>
-        <hr style={{ marginTop: "-2%" }} />
+        <hr style={{ marginTop: "2%" }} />
         <div>
           <div className="basePremium">
-            <p style={{ marginTop: "1%" }}>Base premium - 1 year </p>
-            <h5 style={{ marginTop: "1%" }}>
+            <p style={{ marginTop: "5%" }}>Base premium - 1 year </p>
+            <h5 style={{ marginTop: "5%" }}>
               &#8377; {year_plan[year].toLocaleString("en-US")}
             </h5>
           </div>
@@ -367,7 +375,7 @@ const Payment = () => {
               }}
             >
               {is_rider_hc === false && is_rider_bonus === false ? (
-                <div>
+                <div >
                   <p>Missing out on benefits</p>
                   <h5>
                     <a href="#riders" className="view_extra">
@@ -423,12 +431,12 @@ const Payment = () => {
             </div>
           </div>
           <div>
-            <h4 style={{ marginTop: "4%" }}>Port Existing Policy</h4>
+            <h4 style={{ marginTop: "6%" }}>Port Existing Policy</h4>
             <div className="payment-check-box">
               <input type="checkbox" name="" />
-              <span style={{ marginLeft: "2%" }}>
+              <label style={{ marginLeft: "2%",marginTop : '1%', float :"right" }} className= "span-in-payment-checkbox">
                 Do you wish to port your existing policy?
-              </span>
+              </label>
             </div>
             <div className="premium-payment">
               <h3>Total Premium</h3>
@@ -436,10 +444,10 @@ const Payment = () => {
             </div>
           </div>
         </div>
-        <p className="effictively">
+        <button className="effictively">
           Effectively costs just ₹{total_price.toLocaleString("en-US")}
           <span style={{ color: "green" }}> See How </span>
-        </p>
+        </button>
         <button className="proceed-to-pay-button" onClick={proceed_to_proposal}>
           PROCEED TO PROPOSAL
         </button>

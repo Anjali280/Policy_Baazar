@@ -13,9 +13,11 @@
 .leftside>ul{
     display: grid;
     gap: 10px;
+    text-align: left;
 }
 .leftside>ul>span{
     font-size: x-large;
     font-weight: 700;
     font-style: italic;
+    
 }

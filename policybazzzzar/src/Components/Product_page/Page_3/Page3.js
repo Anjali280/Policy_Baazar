@@ -6,7 +6,7 @@ export const Page3 = () => {
   return (
     <div>
          <div>
-    <button>◀</button>
+    <button onClick={()=>navigate('/lifeinsurance/health-insurance/family-health-insurance/age')}>◀</button>
     <h1>Where do you live?</h1>
         </div>
     <h1>Select a city</h1>
@@ -16,7 +16,7 @@ export const Page3 = () => {
         
     </div>
     <div>
-        <button onClick={()=>navigate('/contact')} >continue</button>
+        <button onClick={()=>navigate('/lifeinsurance/health-insurance/family-health-insurance/contact')} >continue</button>
     </div>
     </div>
   )

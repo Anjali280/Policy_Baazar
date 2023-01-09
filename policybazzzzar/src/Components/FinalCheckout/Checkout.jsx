@@ -9,7 +9,7 @@ const FinalCheckout=()=>
     const[card,setcard]=useState({debit:true,credit:false})
     const navigate=useNavigate()
     return(
-        <div id="fcmaincont" style={{}}>
+        <div id="fcmaincont" style={{marginBottom:"20px"}}>
             <div id="fcparent">
                 <div id="fcchild1">
                     <div className="fcicon" style={card.debit?{backgroundColor:"skyblue"}:null}>

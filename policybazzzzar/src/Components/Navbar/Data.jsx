@@ -1,5 +1,9 @@
 import { Family } from "../Product_page/Family_page/Family"
+import { Family_right } from "../Product_page/Family_page/Family_right"
 import { Product } from "../Product_page/Insurance_page/Product"
+import { Page2 } from "../Product_page/Page_2/Page2"
+import { Page3 } from "../Product_page/Page_3/Page3"
+import { Page4 } from "../Product_page/Page_4/Page4"
 
 const Data={
     TermInsurance:[
